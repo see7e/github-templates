@@ -1,15 +1,8 @@
----
-name: "📚 Feedback form"
-about: Describe a problem, suggest a new idea or functionality for the project
-title: ''
-labels: 'type: feature'
-assignees: ''
----
-
 name: Project documentation
 description: An issue about the Project documentation
 labels:
   - 'Documentation'
+  - 'type: Task'
 body:
 
   - type: markdown
