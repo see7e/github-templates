@@ -1,0 +1,70 @@
+---
+name: "\U0001F41E Bug report"
+about: Report a bug or known issue
+title: ''
+labels: 'type: bug'
+assignees: ''
+---
+
+name: Bug/Crash report but not related to a third party plugin
+description: Create a bug report to help us improve the Project.
+labels:
+  - 'Bug'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > Thanks for taking the time to fill out this bug report correctly.  
+        > Please report only issues related to the Project application.
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What is the bug or the crash?
+      description: Provide a more detailed introduction to the issue itself, and why you consider it to be a bug.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      descriiption: Tell us what should happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: Tell us what happens instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce the issue
+      description: |
+        Steps, sample datasets and Project project file to reproduce the behavior. Screencasts or screenshots are more than welcome, you can drag&drop them in the text box.
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Possible Fix
+      description: Not obligatory, but suggest a fix or reason for the bug.
+    validators:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: |
+        Add any other context about the problem here.
