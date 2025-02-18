@@ -10,7 +10,7 @@ body:
         > Thanks for taking the time to fill out this feature request correctly.
 
   - type: textarea
-    id: what
+    id: description
     attributes:
       label: Feature description
       description: A clear and concise description of what you want to happen. Ex. The Project would rock even more if [...]
@@ -18,7 +18,7 @@ body:
       required: true
 
   - type: textarea
-    id: what
+    id: implementation
     attributes:
       label: Possible Implementation
       description: Not obligatory, but suggest an idea for implementing addition or change
@@ -26,7 +26,7 @@ body:
       required: false
 
   - type: textarea
-    id: Additional
+    id: additional-context
     attributes:
       label: Additional context
       description: |

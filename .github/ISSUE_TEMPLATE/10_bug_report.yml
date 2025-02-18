@@ -22,7 +22,7 @@ body:
     id: expected
     attributes:
       label: Expected Behavior
-      descriiption: Tell us what should happen.
+      description: Tell us what should happen.
     validations:
       required: true
 
@@ -52,7 +52,7 @@ body:
     attributes:
       label: Possible Fix
       description: Not obligatory, but suggest a fix or reason for the bug.
-    validators:
+    validations:
       required: false
 
   - type: textarea
