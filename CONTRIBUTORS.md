@@ -1,11 +1,11 @@
-# This file will be used to populate the contributors tab in the about dialog
-# Lines prefixed with # will be ignored
-# The following people have submitted code, patches, graphics, comments,
-# feedback, reviews and/or many other things that have aided the development of
-# <Project>
-#
-# Use the following format: `<name> <email> <wakatime:link>`. This last one if
-# applicable
+> This file will be used to populate the contributors tab in the about dialog
+> Lines prefixed with # will be ignored
+> The following people have submitted code, patches, graphics, comments,
+> feedback, reviews and/or many other things that have aided the development of
+> <Project>
+> 
+> Use the following format: `<name> <email> <wakatime:link>`. This last one if
+> applicable
 
 | Name | Email | Time |
 | :- | :- | :-: |
