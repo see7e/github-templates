@@ -1,6 +1,3 @@
-# TODO
-- [ ] Add Action Workflows
-
 # References
 > If I forgot to add any reference, please contact me so I can fix it.
 

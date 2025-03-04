@@ -1,0 +1,78 @@
+name: PR Check Title Or Commit Message
+
+on:
+  # Semantic PR module only works with pull_request_target
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - edited
+      - synchronize
+      - ready_for_review
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  check-semantic-pr:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: amannn/action-semantic-pull-request@v5
+        id: semantic-pr
+        if: ${{ ! startsWith(github.event.pull_request.title, 'Revert ') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Configure which types are allowed.
+          # Default: https://github.com/commitizen/conventional-commit-types
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            perf
+            test
+            build
+            ci
+            chore
+            revert
+          # Configure which scopes are allowed.
+          scopes: |
+            api
+            cli
+            core
+            docs
+            infra
+            plugins
+            tests
+          # Configure that a scope must always be provided.
+          requireScope: false
+          # For work-in-progress PRs you can typically use draft pull requests
+          # from GitHub. However, private repositories on the free plan don't have
+          # this option and therefore this action allows you to opt in to using the
+          # special "[WIP]" prefix to indicate this state. This will avoid the
+          # validation of the PR title and the pull request checks remain pending.
+          # Note that a second check will be reported if this is enabled.
+          wip: true
+          # When using "Squash and merge" on a PR with only one commit, GitHub
+          # will suggest using that commit message instead of the PR title for the
+          # merge commit, and it's easy to commit this by mistake. Enable this option
+          # to also validate the commit message for one commit PRs.
+          validateSingleCommit: true
+
+      - uses: actions/checkout@v4
+        if: always()
+
+      - uses: ./.github/workflows/composite/comment-on-pr
+        if: always()
+        env:
+          check-type: Semantic PR check
+          check-documentation: |
+            See instructions on [development process](https://github.com/see7e/github-templates/wiki/03-Development-Process).
+        with:
+          check-type: ${{ env.check-type }}
+          check-documentation: ${{ env.check-documentation }}
+          job-status: ${{ steps.semantic-pr.outcome }}
