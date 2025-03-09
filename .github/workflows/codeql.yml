@@ -62,6 +62,12 @@ jobs:
     # - name: Setup runtime (example)
     #   uses: actions/setup-example@v1
 
+    - name: Check if language is set
+      if: "${{ matrix.language == '' }}"
+      run: |
+        echo "No language detected. Skipping analysis."
+        exit 0
+
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
