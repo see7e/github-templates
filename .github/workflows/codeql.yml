@@ -27,6 +27,7 @@ jobs:
     #   - https://gh.io/supported-runners-and-hardware-resources
     #   - https://gh.io/using-larger-runners (GitHub.com only)
     # Consider using larger runners or machines with greater resources for possible analysis time improvements.
+    
     runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
     permissions:
       # required for all workflows
@@ -49,9 +50,9 @@ jobs:
       # see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning.
       # If you are analyzing a compiled language, you can modify the 'build-mode' for that language to customize how
       # your codebase is analyzed, see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages
+      matrix:
+        language: [ 'python', 'javascript-typescript', '' ]  # Define your languages here
 
-      # matrix:
-        # include:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -62,18 +63,12 @@ jobs:
     # - name: Setup runtime (example)
     #   uses: actions/setup-example@v1
 
-    - name: Check if language is set
-      if: "${{ matrix.language == '' }}"
-      run: |
-        echo "No language detected. Skipping analysis."
-        exit 0
-
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        build-mode: ${{ matrix.build-mode }}
+        # build-mode: ${{ matrix.build-mode }}
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
         # Prefix the list here with "+" to use these queries and those in the config file.
@@ -87,15 +82,15 @@ jobs:
     # to build your code.
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-    - if: matrix.build-mode == 'manual'
-      shell: bash
-      run: |
-        echo 'If you are using a "manual" build mode for one or more of the' \
-          'languages you are analyzing, replace this with the commands to build' \
-          'your code, for example:'
-        echo '  make bootstrap'
-        echo '  make release'
-        exit 1
+    # - if: matrix.build-mode == 'manual'
+    #   shell: bash
+    #   run: |
+    #     echo 'If you are using a "manual" build mode for one or more of the' \
+    #       'languages you are analyzing, replace this with the commands to build' \
+    #       'your code, for example:'
+    #     echo '  make bootstrap'
+    #     echo '  make release'
+    #     exit 1
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
